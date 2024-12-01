@@ -7,6 +7,7 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix, roc_curve, auc
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+from google.colab import drive
 
 # Set in wide mode by default
 st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sidebar_state="auto", menu_items=None)
@@ -16,14 +17,23 @@ st.title("Diabetes Prediction Results using Machine Learning Models")
 st.write("Upload a file to get predictions from the pre-trained ML models or manually input values for prediction.")
 
 # Model selection
+# Model selection
 model_choices = {
-    "Logistic Regression": "lr_model.pkl",
-    "KNN Model": "knn_model.pkl",
-    "Decision Tree": "dt_classifier.pkl",
-    "Naive Bayes": "nb_model.pkl",
-    "SVM Model": "svm_model.pkl",
-    "Random Forest Model": "random_forest_model.pkl"
+    "Logistic Regression": "/content/drive/My Drive/streamlit_models/lr_model.pkl",
+    "KNN Model": "/content/drive/My Drive/streamlit_models/knn_model.pkl",
+    "Decision Tree": "/content/drive/My Drive/streamlit_models/dt_classifier.pkl",
+    "Naive Bayes": "/content/drive/My Drive/streamlit_models/nb_model.pkl",
+    "SVM Model": "/content/drive/My Drive/streamlit_models/svm_model.pkl",
+    "Random Forest Model": "/content/drive/My Drive/streamlit_models/random_forest_model.pkl"
 }
+# model_choices = {
+#     "Logistic Regression": "lr_model.pkl",
+#     "KNN Model": "knn_model.pkl",
+#     "Decision Tree": "dt_classifier.pkl",
+#     "Naive Bayes": "nb_model.pkl",
+#     "SVM Model": "svm_model.pkl",
+#     "Random Forest Model": "random_forest_model.pkl"
+# }
 selected_model = st.selectbox("Select a model to use for prediction:", list(model_choices.keys()))
 
 # list of required columns
@@ -171,7 +181,7 @@ with col2:
 
             elif input_plot_choice == "Smoking Status":
                 fig, ax = plt.subplots()
-                sns.countplot(x='smoking_history', data=data, ax=ax, palette='Set1')
+                sns.countplot(x='smoking_encoded', data=data, ax=ax, palette='Set1')
 
                 # Add value labels on top of each bar
                 for p in ax.patches:
