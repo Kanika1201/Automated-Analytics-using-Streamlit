@@ -7,7 +7,7 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix, roc_curve, auc
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
-from google.colab import drive
+import gdown
 
 # Set in wide mode by default
 st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sidebar_state="auto", menu_items=None)
@@ -19,13 +19,14 @@ st.write("Upload a file to get predictions from the pre-trained ML models or man
 # Model selection
 # Model selection
 model_choices = {
-    "Logistic Regression": "/content/drive/My Drive/streamlit_models/lr_model.pkl",
-    "KNN Model": "/content/drive/My Drive/streamlit_models/knn_model.pkl",
-    "Decision Tree": "/content/drive/My Drive/streamlit_models/dt_classifier.pkl",
-    "Naive Bayes": "/content/drive/My Drive/streamlit_models/nb_model.pkl",
-    "SVM Model": "/content/drive/My Drive/streamlit_models/svm_model.pkl",
-    "Random Forest Model": "/content/drive/My Drive/streamlit_models/random_forest_model.pkl"
+    "Logistic Regression": "https://drive.google.com/uc?id=1ymueuL6M1VsBa-eb-a5ICx1w30Q0ETyo",
+    "KNN Model": "https://drive.google.com/uc?id=1BaHCNFRQzpoEZk4l7hKCGjypDrYhQcet",
+    "Decision Tree": "https://drive.google.com/uc?id=1vi4BaIbM5gOxUGMpex3zuT53RM6Ed2OP",
+    "Naive Bayes": "https://drive.google.com/uc?id=1BZoXDWwyzetF5lEkahzLTBN6SkO2CVaL",
+    "SVM Model": "https://drive.google.com/uc?id=1PVqgz8t_eLu4mApkdlNkdCumdiGuKDPc",
+    "Random Forest Model": "https://drive.google.com/uc?id=1HFYuJH49nks4iNrOJZCiLJF9KhIUCefJ"
 }
+
 # model_choices = {
 #     "Logistic Regression": "lr_model.pkl",
 #     "KNN Model": "knn_model.pkl",
