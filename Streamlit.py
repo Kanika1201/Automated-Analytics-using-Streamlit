@@ -17,7 +17,6 @@ st.title("Diabetes Prediction Results using Machine Learning Models")
 st.write("Upload a file to get predictions from the pre-trained ML models or manually input values for prediction.")
 
 # Model selection
-# Model selection
 model_choices = {
     "Logistic Regression": "https://drive.google.com/uc?id=1ymueuL6M1VsBa-eb-a5ICx1w30Q0ETyo",
     "KNN Model": "https://drive.google.com/uc?id=1BaHCNFRQzpoEZk4l7hKCGjypDrYhQcet",
