@@ -8,6 +8,7 @@ from sklearn.metrics import confusion_matrix, roc_curve, auc
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 import gdown
+import pickle
 
 # Set in wide mode by default
 st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sidebar_state="auto", menu_items=None)
@@ -34,8 +35,20 @@ model_choices = {
 #     "SVM Model": "svm_model.pkl",
 #     "Random Forest Model": "random_forest_model.pkl"
 # }
+# selected_model = st.selectbox("Select a model to use for prediction:", list(model_choices.keys()))
+
 selected_model = st.selectbox("Select a model to use for prediction:", list(model_choices.keys()))
 
+# Temporary path to store the downloaded model
+temp_model_path = "selected_model.pkl"
+
+# Download the model file
+model_url = model_choices[selected_model]
+download_file_from_google_drive(model_url, temp_model_path)
+
+with open(temp_model_path, "rb") as file:
+    model = pickle.load(file)
+    
 # list of required columns
 required_columns = [
     'gender', 'age', 'hypertension', 'heart_disease', 'smoking_encoded', 
