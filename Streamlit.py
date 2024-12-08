@@ -11,11 +11,11 @@ import gdown
 import pickle
 import requests
 
-def download_file_from_google_drive(url, output_path):
-    response = requests.get(url)
-    response.raise_for_status()  # Ensure the request was successful
-    with open(output_path, "wb") as file:
-        file.write(response.content)
+# def download_file_from_google_drive(url, output_path):
+#     response = requests.get(url)
+#     response.raise_for_status()  # Ensure the request was successful
+#     with open(output_path, "wb") as file:
+#         file.write(response.content)
 
 
 # Set in wide mode by default
@@ -25,48 +25,48 @@ st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sideb
 st.title("Diabetes Prediction Results using Machine Learning Models")
 st.write("Upload a file to get predictions from the pre-trained ML models or manually input values for prediction.")
 
-# Model selection
-model_choices = {
-    "Logistic Regression": "https://drive.google.com/uc?id=1ymueuL6M1VsBa-eb-a5ICx1w30Q0ETyo",
-    "KNN Model": "https://drive.google.com/uc?id=1BaHCNFRQzpoEZk4l7hKCGjypDrYhQcet",
-    "Decision Tree": "https://drive.google.com/uc?id=1vi4BaIbM5gOxUGMpex3zuT53RM6Ed2OP",
-    "Naive Bayes": "https://drive.google.com/uc?id=1BZoXDWwyzetF5lEkahzLTBN6SkO2CVaL",
-    "SVM Model": "https://drive.google.com/uc?id=1PVqgz8t_eLu4mApkdlNkdCumdiGuKDPc",
-    "Random Forest Model": "https://drive.google.com/uc?id=1HFYuJH49nks4iNrOJZCiLJF9KhIUCefJ"
-}
-
+# # Model selection
 # model_choices = {
-#     "Logistic Regression": "lr_model.pkl",
-#     "KNN Model": "knn_model.pkl",
-#     "Decision Tree": "dt_classifier.pkl",
-#     "Naive Bayes": "nb_model.pkl",
-#     "SVM Model": "svm_model.pkl",
-#     "Random Forest Model": "random_forest_model.pkl"
+#     "Logistic Regression": "https://drive.google.com/uc?id=1ymueuL6M1VsBa-eb-a5ICx1w30Q0ETyo",
+#     "KNN Model": "https://drive.google.com/uc?id=1BaHCNFRQzpoEZk4l7hKCGjypDrYhQcet",
+#     "Decision Tree": "https://drive.google.com/uc?id=1vi4BaIbM5gOxUGMpex3zuT53RM6Ed2OP",
+#     "Naive Bayes": "https://drive.google.com/uc?id=1BZoXDWwyzetF5lEkahzLTBN6SkO2CVaL",
+#     "SVM Model": "https://drive.google.com/uc?id=1PVqgz8t_eLu4mApkdlNkdCumdiGuKDPc",
+#     "Random Forest Model": "https://drive.google.com/uc?id=1HFYuJH49nks4iNrOJZCiLJF9KhIUCefJ"
 # }
-# selected_model = st.selectbox("Select a model to use for prediction:", list(model_choices.keys()))
 
+model_choices = {
+    "Logistic Regression": "lr_model.pkl",
+    "KNN Model": "knn_model.pkl",
+    "Decision Tree": "dt_classifier.pkl",
+    "Naive Bayes": "nb_model.pkl",
+    "SVM Model": "svm_model.pkl",
+    # "Random Forest Model": "random_forest_model.pkl"
+}
 selected_model = st.selectbox("Select a model to use for prediction:", list(model_choices.keys()))
 
+# selected_model = st.selectbox("Select a model to use for prediction:", list(model_choices.keys()))
+
 # Temporary path to store the downloaded model
-temp_model_path = "selected_model.pkl"
+# temp_model_path = "selected_model.pkl"
 
-# Download the model file
-model_url = model_choices[selected_model]
-download_file_from_google_drive(model_url, temp_model_path)
+# # Download the model file
+# model_url = model_choices[selected_model]
+# download_file_from_google_drive(model_url, temp_model_path)
 
-with open(temp_model_path, "rb") as file:
-    model = pickle.load(file)
+# with open(temp_model_path, "rb") as file:
+#     model = pickle.load(file)
     
-# list of required columns
-required_columns = [
-    'gender', 'age', 'hypertension', 'heart_disease', 'smoking_encoded', 
-    'bmi', 'HbA1c_level', 'blood_glucose_level', 'diabetes'
-]
+# # list of required columns
+# required_columns = [
+#     'gender', 'age', 'hypertension', 'heart_disease', 'smoking_encoded', 
+#     'bmi', 'HbA1c_level', 'blood_glucose_level', 'diabetes'
+# ]
 
-# Load the selected ML model
-model_file = model_choices[selected_model]
-with open(model_file, "rb") as file:
-    model = pickle.load(file)
+# # Load the selected ML model
+# model_file = model_choices[selected_model]
+# with open(model_file, "rb") as file:
+#     model = pickle.load(file)
 
 # Layout: Our display will be divided into two columns
 col1, col2 = st.columns([1, 2])
