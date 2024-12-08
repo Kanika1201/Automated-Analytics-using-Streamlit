@@ -9,6 +9,14 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 import gdown
 import pickle
+import requests
+
+def download_file_from_google_drive(url, output_path):
+    response = requests.get(url)
+    response.raise_for_status()  # Ensure the request was successful
+    with open(output_path, "wb") as file:
+        file.write(response.content)
+
 
 # Set in wide mode by default
 st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sidebar_state="auto", menu_items=None)
